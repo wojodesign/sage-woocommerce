@@ -35,7 +35,7 @@ if (defined('WC_ABSPATH')) {
     }, PHP_INT_MAX, 1);
 
     add_action('woocommerce_before_template_part', function ($template_name, $template_path, $located, $args) {
-        $theme_template = locate_template(WC()->template_path() . $template_name);
+        $theme_template = locate_template(($template_path ? $template_path : WC()->template_path()) . $template_name);
 
         if ($theme_template) {
             $data = collect(get_body_class())->reduce(function ($data, $class) {
